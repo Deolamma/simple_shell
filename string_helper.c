@@ -25,6 +25,7 @@ int _strcmp(const char *str1, const char *str2)
  */
 char *_strcpy(char *destination, const char *source)
 {
+	char *original_destination = destination;
 	/* Loop through the source string until the null terminator is found */
 	while (*source)
 	{
@@ -40,7 +41,7 @@ char *_strcpy(char *destination, const char *source)
 	*destination = '\0';
 
 	/* Return the pointer to the destination buffer */
-	return (destination);
+	return (original_destination);
 }
 /**
  * _strcat - Concatenates two strings
@@ -51,6 +52,7 @@ char *_strcpy(char *destination, const char *source)
  */
 char *_strcat(char *destination, const char *source)
 {
+	char *original_destination = destination;
 	/* Move to the end of the destination string */
 	while (*destination)
 		destination++;
@@ -64,5 +66,22 @@ char *_strcat(char *destination, const char *source)
 	}
 
 	*destination = '\0'; /* Don't forget to add the null-terminator at the end */
-	return (destination);
+	return (original_destination);
+}
+/**
+ * _strlen - gets the number of chars in a str..
+ * @str: string in which length is to be gotten
+ * Return: Number of characters excluding the '\0' byte
+ *
+ */
+size_t _strlen(const char *str)
+{
+	size_t count = 0;
+
+	while (*str)
+	{
+		count++;
+		str++;
+	}
+	return (count);
 }
