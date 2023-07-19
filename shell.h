@@ -1,7 +1,17 @@
 #ifndef SHELL_H
 #define SHELL_H
+#include <stdio.h>
 #include <stddef.h>
+#include <sys/types.h>
 #define BUFFSIZ 1024
+
+/* tokenize function */
+#define TOKENS_BUFF 64
+#define DELIM " \t\r\n\a"
+
+/* environment variable */
+extern char **environ;
+
 /* MAIN FXN -  functions */
 void interactive_mode(void);
 void non_interactive_mode(void);
@@ -14,4 +24,8 @@ size_t _strlen(const char *);
 char *str_tok(char *, const char *);
 ssize_t _getline(char **, size_t *, FILE *);
 
+/* interactive/non-interactive mode fxns*/
+char *read_input(void);
+char **_tokenize(char *);
+int execute_commands(char **);
 #endif
