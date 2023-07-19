@@ -1,3 +1,4 @@
+#include "shell.h"
 /**
  * _strcmp - This function compares two strings
  * @str1: The first string to be compared
