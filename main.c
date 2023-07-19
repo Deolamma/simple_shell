@@ -11,7 +11,7 @@ int main(void)
 	{
 		interactive_mode();
 	}
-	non_interactive_mode();
+	/* non_interactive_mode(); */
 	return (0);
 }
 
