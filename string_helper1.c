@@ -1,9 +1,4 @@
 #include "shell.h"
-#include <stdlib.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <sys/types.h>
 /**
  * str_tok - Splits a string into tokens
  * @str: String to be broken down into tokens
@@ -98,4 +93,27 @@ ssize_t _getline(char **line, size_t *n, FILE *stream)
 	}
 	(*line)[line_len] = '\0';
 	return ((ssize_t)line_len);
+}
+/**
+ * _strdup - duplicates a string
+ * @s: string to be duplicated
+ * Return: returns a pointer to the duplicated string
+ */
+char *_strdup(char *s)
+{
+	char *dup_str;
+	int s_len;
+	int i;
+
+	if (!s)
+		return (NULL);
+	s_len = _strlen(s);
+	dup_str = malloc(sizeof(char) * (s_len + 1));
+	if (!dup_str)
+		return (NULL);
+	for (i = 0; i < s_len; i++)
+	{
+		dup_str[i] = s[i];
+	}
+	return (dup_str);
 }

@@ -86,3 +86,33 @@ size_t _strlen(const char *str)
 	}
 	return (count);
 }
+/**
+ * _strncmp - compares up to n bytes of two strings
+ * @s1: string 1
+ * @s2: string 2
+ * @n: number of bytes to compare
+ * Return: returns 0 if up to n bytes are equal
+ */
+int _strncmp(const char *s1, const char *s2, size_t n)
+{
+	int i;
+
+	/* if either s1 or s2 is NULL */
+	/* return 1 if s1 is NOT NULL */
+	/* return -1 if s2 is NOT NULL */
+	/* the if block can NEVER return 0 */
+	if (!s1 || !s2)
+		return (s1 ? 1 : (s2 ? -1 : 0));
+
+	for (i = 0; (size_t)i < n; i++)
+	{
+		if (*s1 != *s2)
+			return ((*s1) - (*s2));
+
+		if (*s1 || *s2)
+			break;
+		s1++;
+		s2++;
+	}
+	return (0);
+}
