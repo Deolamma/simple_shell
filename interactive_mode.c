@@ -14,7 +14,7 @@ void interactive_mode(void)
 		write(STDOUT_FILENO, "$ ", 3);
 		line = read_input();
 		cmds = _tokenize(line);
-		status = execute_commands(cmds);
+		status = process_handler(cmds);
 
 	free(line);
 	free(cmds);
