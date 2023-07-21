@@ -2,6 +2,10 @@
 #define SHELL_H
 #include <stdio.h>
 #include <stddef.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+#include <sys/wait.h>
 #include <sys/types.h>
 #define BUFFSIZ 1024
 
@@ -16,16 +20,32 @@ extern char **environ;
 void interactive_mode(void);
 void non_interactive_mode(void);
 
-/* string helpers */
+/* string helper file */
 int _strcmp(const char *, const char *);
 char *_strcpy(char *, const char *);
 char *_strcat(char *, const char *);
 size_t _strlen(const char *);
+int _strncmp(const char *,const char *, size_t);
+
+/* string helper1 file */
 char *str_tok(char *, const char *);
 ssize_t _getline(char **, size_t *, FILE *);
+char *_strdup(char *);
 
 /* interactive/non-interactive mode fxns*/
 char *read_input(void);
 char **_tokenize(char *);
-int execute_commands(char **);
+int process_handler(char **);
+int abs_path_cmd_runner(char **);
+int cmd_runner(char **);
+
+
+/* BUILT-IN FUNCTIONS */
+int _cd(char **);
+/*int my_exit(char **);*/
+
+/* functions for finding path */
+char *_getenv(char *);
+char *get_path(char **);
+
 #endif
