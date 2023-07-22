@@ -31,6 +31,7 @@ int _strncmp(const char *,const char *, size_t);
 char *str_tok(char *, const char *);
 ssize_t _getline(char **, size_t *, FILE *);
 char *_strdup(char *);
+char *_strchr(const char *str, int ch);
 
 /* interactive/non-interactive mode fxns*/
 char *read_input(void);
