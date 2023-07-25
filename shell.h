@@ -34,6 +34,9 @@ char *_strdup(char *);
 char **_strdup_arr(char **);
 int _putchar(int);
 
+/* string helper2 file */
+char *_strchr(const char, int);
+
 /* interactive/non-interactive mode fxns*/
 char *read_input(void);
 char **_tokenize(char *);
