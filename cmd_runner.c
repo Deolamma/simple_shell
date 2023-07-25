@@ -13,23 +13,23 @@ int cmd_runner(char **cmds)
 	abs_path = get_path(cmds);
 	if (!abs_path)
 	{
-		perror("Command does not exist");
+		perror(cmds[0]);
 		free(abs_path);
 		return (1);
 	}
 	pid = fork();
-	if (pid == -1)
+	if (pid < 0)
 	{
+		perror(cmds[0]);
 		free(abs_path);
 		free(cmds);
-		perror("Forking failed");
 		exit(EXIT_FAILURE);
 	}
 	if (pid == 0)
 	{
 		if (execve(abs_path, cmds, environ) == -1)
 		{
-			perror("Invalid commands");
+			perror(cmds[0]);
 			free(abs_path);
 			free(cmds);
 			exit(EXIT_FAILURE);
