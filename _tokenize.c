@@ -18,8 +18,8 @@ char **_tokenize(char *line)
 	tokens = malloc(sizeof(char *) * tokens_buff);
 	if (!tokens)
 	{
-		free(line);
 		dprintf(STDERR_FILENO, "Memory allocation failed: _tokenize");
+		free(line);
 		exit(EXIT_FAILURE);
 	}
 	token = strtok(line, DELIM);
@@ -33,8 +33,9 @@ char **_tokenize(char *line)
 			tokens = realloc(tokens, sizeof(char *) * tokens_buff);
 			if (!tokens)
 			{
-				free(line);
 				dprintf(STDERR_FILENO, "Memory realloc failed: _tokenize");
+				free(tokens);
+				free(line);
 				exit(EXIT_FAILURE);
 			}
 		}
