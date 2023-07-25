@@ -13,17 +13,14 @@ char *get_path(char **args)
 
 	path_val = _getenv("PATH");
 	if (!path_val)
-	{
-		perror(args[0]);
 		return (NULL);
-	}
 	/* This copy was created because of the reentrant nature of getenv */
 	/* on successive calss */
 	path_val_copy = _strdup(path_val);
 	if (path_val_copy)
 	{
 		path_val_tok = strtok(path_val_copy, ":");
-		while (path_val_tok != NULL)
+		while (path_val_tok)
 		{
 			_strcpy(cmd_path, path_val_tok);
 			_strcat(cmd_path, "/");
@@ -36,7 +33,6 @@ char *get_path(char **args)
 			path_val_tok = strtok(NULL, ":");
 		}
 	}
-	free(path_val_copy);
 	return (NULL);
 }
 
