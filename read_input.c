@@ -1,6 +1,4 @@
 #include "shell.h"
-#include <stdio.h>
-#include <stdlib.h>
 /**
  * read_input - reads the command or text written to the terminal
  * Return: returns the string inputted by user
