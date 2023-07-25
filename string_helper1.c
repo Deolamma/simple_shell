@@ -117,3 +117,51 @@ char *_strdup(char *s)
 	}
 	return (dup_str);
 }
+/**
+ * _strdup_arr - duplicating a array of characters
+ * @src: source array to be duplicated
+ * Return: returns a duplicated array of source onSuccess
+ */
+char **_strdup_arr(char **src)
+{
+	size_t i, j, num_elem = 0;
+	char **dup_arr;
+
+	if (!src)
+		return (NULL);
+	while (!(src[num_elem]))
+	{
+		num_elem++;
+	}
+	dup_arr = malloc(sizeof(char *) * (num_elem + 1));
+	if (!dup_arr)
+		return (NULL);
+
+	for (i = 0; i < num_elem; i++)
+	{
+		/* duplicate the string in src array i to dup_arr */
+		dup_arr[i] = _strdup(src[i]);
+		if (!dup_arr[i])
+		{
+		/* free memory of each string already alloc if copy fails */
+			for (j = 0; j < i; j++)
+				free(dup_arr[j]);
+			/* free the array itself */
+			free(dup_arr);
+			return (NULL);
+		}
+	}
+	dup_arr[num_elem] = '\0';
+	return (dup_arr);
+}
+/**
+ * _putchar - prints one char at a time
+ * @c: character to be printed
+ * Return: the character the value that has been written or EOF
+ */
+int _putchar(int c)
+{
+	return (write(STDOUT_FILENO, &c, 1));
+}
+
+
