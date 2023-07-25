@@ -15,11 +15,8 @@ void interactive_mode(void)
 		line = read_input();
 		cmds = _tokenize(line);
 		status = process_handler(cmds);
-
 	free(line);
 	free(cmds);
-	if (status != 1)
-		exit(status);
 	} while (status);
 }
 
