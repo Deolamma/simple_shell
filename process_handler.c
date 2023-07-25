@@ -1,6 +1,7 @@
 #include "shell.h"
 int (*built_in_func[])(char **) = {
-	&_cd
+	&_cd,
+	&_env
 };
 /**
  * process_handler - determines if the command is a builtin or abs. path
@@ -10,7 +11,7 @@ int (*built_in_func[])(char **) = {
 int process_handler(char **args)
 {
 	int i, built_in_num;
-	char *built_in[] = {"cd"};
+	char *built_in[] = {"cd", "env"};
 
 	built_in_num = sizeof(built_in) / sizeof(char *);
 	/* User pressed the enter key without typing a command */
@@ -22,7 +23,9 @@ int process_handler(char **args)
 			return ((*built_in_func[i])(args));
 	}
 	if (args[0][0] == '/')
+	{
 		return (abs_path_cmd_runner(args));
+	}
 	return (cmd_runner(args));
 }
 
