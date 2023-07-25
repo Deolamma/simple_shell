@@ -25,12 +25,14 @@ int _strcmp(const char *, const char *);
 char *_strcpy(char *, const char *);
 char *_strcat(char *, const char *);
 size_t _strlen(const char *);
-int _strncmp(const char *,const char *, size_t);
+int _strncmp(const char *, const char *, size_t);
 
 /* string helper1 file */
 char *str_tok(char *, const char *);
 ssize_t _getline(char **, size_t *, FILE *);
 char *_strdup(char *);
+char **_strdup_arr(char **);
+int _putchar(int);
 
 /* interactive/non-interactive mode fxns*/
 char *read_input(void);
@@ -42,6 +44,7 @@ int cmd_runner(char **);
 
 /* BUILT-IN FUNCTIONS */
 int _cd(char **);
+int _env(char **);
 /*int my_exit(char **);*/
 
 /* functions for finding path */
