@@ -18,15 +18,18 @@ int abs_path_cmd_runner(char **cmds)
 	pid = fork();
 	if (pid == -1)
 	{
+		perror(cmds[0]);
 		free(cmds);
-		perror("Forking failed");
+		exit(EXIT_FAILURE);
 	}
 	if (pid == 0)
 	{
 		if (execve(cmds[0], cmds, NULL) == -1)
-			perror("Invalid commands");
-		free(cmds);
-		exit(EXIT_FAILURE);
+		{
+			perror(cmds[0]);
+			free(cmds);
+			exit(EXIT_FAILURE);
+		}
 	}
 	do {
 		waitpid(pid, &status, WUNTRACED);
