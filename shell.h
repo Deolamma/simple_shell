@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <signal.h>
 #include <sys/wait.h>
 #include <sys/types.h>
 #define BUFFSIZ 1024
@@ -15,6 +16,9 @@
 
 /* environment variable */
 extern char **environ;
+
+/* signal handler */
+void sigint_handler(int, siginfo_t *,  void *);
 
 /* MAIN FXN -  functions */
 void interactive_mode(void);
@@ -35,10 +39,11 @@ char **_strdup_arr(char **);
 int _putchar(int);
 
 /* string helper2 file */
-char *_strchr(const char, int);
+const char *_strchr(const char *, int);
 
 /* interactive/non-interactive mode fxns*/
 char *read_input(void);
+char *read_frm_stream(void);
 char **_tokenize(char *);
 int process_handler(char **);
 int abs_path_cmd_runner(char **);
@@ -48,7 +53,7 @@ int cmd_runner(char **);
 /* BUILT-IN FUNCTIONS */
 int _cd(char **);
 int _env(char **);
-/*int my_exit(char **);*/
+int my_exit(char **);
 
 /* functions for finding path */
 char *_getenv(char *);
