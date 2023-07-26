@@ -6,7 +6,7 @@
  */
 char *get_path(char **args)
 {
-	char *path_val;
+	char *path_val = NULL;
 	char *path_val_copy;
 	char *path_val_tok;
 	char cmd_path[BUFFSIZ];
@@ -33,6 +33,7 @@ char *get_path(char **args)
 			path_val_tok = strtok(NULL, ":");
 		}
 	}
+	free(path_val_copy);
 	return (NULL);
 }
 
