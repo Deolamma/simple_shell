@@ -5,7 +5,7 @@
  * @ch: The character to find in the string
  * Return: Pointer to the first occurrence of 'ch' in 'str'
  */
-char *_strchr(const char *str, int ch)
+const char *_strchr(const char *str, int ch)
 {
 	while (*str != '\0')
 	{

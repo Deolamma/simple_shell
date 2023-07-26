@@ -101,7 +101,7 @@ ssize_t _getline(char **line, size_t *n, FILE *stream)
  */
 char *_strdup(char *s)
 {
-	char *dup_str;
+	char *dup_str = NULL;
 	int s_len;
 	int i;
 
@@ -115,6 +115,7 @@ char *_strdup(char *s)
 	{
 		dup_str[i] = s[i];
 	}
+	dup_str[s_len] = '\0';
 	return (dup_str);
 }
 /**
