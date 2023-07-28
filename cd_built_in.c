@@ -42,7 +42,7 @@ int cd_home(char **args_cpy)
 int cd_old_wd(char **args_cpy)
 {
 	char *old_wd;
-	char *old_wd_cpy;
+	char curr_wd[BUFFSIZ];
 
 	old_wd = _getenv("OLDPWD");
 	if (!old_wd)
@@ -51,21 +51,24 @@ int cd_old_wd(char **args_cpy)
 		free(args_cpy);
 		return (1);
 	}
-	old_wd_cpy = _strdup(old_wd);
-	if (!old_wd_cpy)
+	if (getcwd(curr_wd, sizeof(curr_wd)) == NULL)
+	{
+		perror("getcwd");
+		free(args_cpy);
+		return (1);
+	}
+	if (chdir(old_wd) != 0)
 	{
 		perror(args_cpy[1]);
 		free(args_cpy);
 		return (1);
 	}
-	if (chdir(old_wd_cpy) != 0)
+	if (setenv("OLDPWD", curr_wd, 1) != 0)
 	{
-		perror(args_cpy[1]);
-		free(old_wd_cpy);
+		perror("setenv");
 		free(args_cpy);
 		return (1);
 	}
-	free(old_wd_cpy);
 	free(args_cpy);
 	return (1);
 }
