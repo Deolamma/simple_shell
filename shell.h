@@ -6,6 +6,7 @@
 #include <string.h>
 #include <unistd.h>
 #include <signal.h>
+#include <errno.h>
 #include <sys/wait.h>
 #include <sys/types.h>
 #define BUFFSIZ 1024
@@ -41,6 +42,9 @@ int _putchar(int);
 /* string helper2 file */
 const char *_strchr(const char *, int);
 
+/* ERROR HANDLER */
+void error_handler(char **);
+
 /* interactive/non-interactive mode fxns*/
 char *read_input(void);
 char *read_frm_stream(void);
@@ -58,5 +62,4 @@ int my_exit(char **);
 /* functions for finding path */
 char *_getenv(char *);
 char *get_path(char **);
-
 #endif
