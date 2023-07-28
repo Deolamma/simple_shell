@@ -20,7 +20,7 @@ int my_exit(char **cmds)
 	}
 	if (num_args == 1)
 	{
-		free(cmds);
+		error_handler(cmds);
 		exit(EXIT_SUCCESS);
 	} else if (num_args == 2)
 	{
@@ -34,8 +34,7 @@ int my_exit(char **cmds)
 			}
 		}
 		exit_stat = atoi(exit_stat_str);
-		free(cmds);
-		fflush(stdin);
+		error_handler(cmds);
 		exit(exit_stat);
 	}
 	return (1);
