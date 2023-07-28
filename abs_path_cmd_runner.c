@@ -9,12 +9,6 @@ int abs_path_cmd_runner(char **cmds)
 	pid_t pid;
 	int status;
 
-	if (cmds[0] == NULL)
-	{
-		/* User pressed enter key */
-		return (1);
-	}
-
 	pid = fork();
 	if (pid == -1)
 	{
@@ -27,13 +21,12 @@ int abs_path_cmd_runner(char **cmds)
 		if (execve(cmds[0], cmds, NULL) == -1)
 		{
 			perror(cmds[0]);
-			free(cmds);
-			exit(EXIT_FAILURE);
+			error_handler(cmds);
+			exit(EXIT_SUCCESS);
 		}
 	}
 	do {
 		waitpid(pid, &status, WUNTRACED);
 	} while (!WIFEXITED(status) && !WIFSIGNALED(status));
-
 	return (1);
 }
